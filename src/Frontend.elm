@@ -70,13 +70,13 @@ getTitle : Page -> String
 getTitle page =
     case page of
         Ifs ->
-            "Animind - Parts Work"
+            "Parts Work"
 
         NotFound ->
-            "Animind - Not Found"
+            "Page Not Found"
 
         Login ->
-            "Animind - Log In"
+            "Log In"
 
 
 update : FrontendMsg -> FrontendModel -> ( FrontendModel, Cmd FrontendMsg )
