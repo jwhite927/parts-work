@@ -59,11 +59,17 @@ navBar model =
     case model.user of
         Just user ->
             row
-                (baseButtons |> withLoggedIn user)
+                (baseButtons
+                    |> withLeftNavButton "/" "Dashboard"
+                    |> withLoggedIn user
+                )
 
         Nothing ->
             row
-                (baseButtons |> withRightNavButton "/login" "Log In")
+                (baseButtons
+                    |> withLeftNavButton "/" "Dashboard"
+                    |> withRightNavButton "/login" "Log In"
+                )
 
 
 withLeftNavButton : String -> String -> List (El.Element FrontendMsg) -> List (El.Element FrontendMsg)
@@ -118,6 +124,7 @@ footer =
         , El.padding 10
         , Border.rounded 3
         , Font.color Style.white
+
         -- , Background.color Style.red
         , El.alignBottom
         ]
