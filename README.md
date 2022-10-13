@@ -7,10 +7,10 @@ The idea is that one could track what parts of their mind are present to assist 
 [Try the demo here!](https://parts-work-demo.lamdera.app/)
 
 You can:
-    - Drag parts around to different locations
-    - Use the black circle to resize a part
-    - Add new parts
-    - Create and reuse a login to save your work
+* Drag parts around to different locations
+* Use the black circle to resize a part
+* Add new parts
+* Create and reuse a login to save your work
 
 ![Parts_Work_Demo](./parts-work-demo.gif)
 
