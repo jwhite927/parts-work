@@ -21,18 +21,25 @@ import VirtualDom
 
 
 
+--MVP 1
 -- DONE Make it so parts can't overlap
 -- DONE Make parts resizable
+-- DONE Add zoom functionality
+-- DONE Add view mode
+-- TODO Make parts selectable
+-- TODO Add zoom slider
+-- TODO Add pan functionality
+-- TODO Make it so you can only edit selected part
 -- TODO Improve resize UX / Appearance
 -- TODO Use an hsluv color scheme that looks nice
 -- TODO Make it so part color can be changed
 -- TODO Make it so relationships between parts can be annotated
--- TODO Add a part journaling feature
 -- TODO Add view functions
---   1. TODO Make view mode
---   2. TODO Add zoom functionality
---   3. TODO Add pan functionality
--- VIEW
+--MVP 2
+-- TODO Add part journaling feature
+--MVP 3
+-- TODO Add custom part meditations
+-- TODO Add checkups for unburdened exiled parts
 
 
 view : FrontendModel -> List (El.Element FrontendMsg)
@@ -146,6 +153,7 @@ withEndEditPartEvent model elements =
 
         _ ->
             elements
+
 
 withMovingPartEvent : FrontendModel -> List (TSC.Attribute FrontendMsg) -> List (TSC.Attribute FrontendMsg)
 withMovingPartEvent model elements =
@@ -311,6 +319,7 @@ noSelect =
     style "pointer-events: none"
 
 
+withMoveDragEvents : PartName -> List (TSC.Attribute FrontendMsg) -> List (TSC.Attribute FrontendMsg)
 withMoveDragEvents name attrs =
     List.concat
         [ [ TSE.onMouseDown <| StartMovingPart name
@@ -321,21 +330,6 @@ withMoveDragEvents name attrs =
 
 resizeDragEvent name =
     TSE.onMouseDown <| StartResizingPart name
-
-
-textHelper : Float -> Float -> Float -> String -> TSC.Svg msg
-textHelper textX textY size string =
-    TS.text_
-        [ x <| TST.percent textX
-        , y <| TST.percent textY
-        , textAnchor TST.AnchorMiddle
-        , dominantBaseline TST.DominantBaselineMiddle
-        , fontSize (TST.px size)
-        , fontFamily [ "Helvetica", "sans-serif" ]
-        , fill <| TST.Paint Color.white
-        , noSelect
-        ]
-        [ TSC.text string ]
 
 
 onEnter : msg -> El.Attribute msg
