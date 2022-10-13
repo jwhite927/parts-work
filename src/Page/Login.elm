@@ -9,6 +9,7 @@ import Email
 import Style
 import Types exposing (..)
 import Utility exposing (..)
+import Env
 
 
 
@@ -37,24 +38,28 @@ viewLogin model =
 
 
 withDevLogin elements =
-    elements
-        ++ [ Input.button
-                [ Background.color Style.offLavender
-                , El.mouseOver [ Background.color Style.offLavender ]
-                , Font.size 15
-                , Font.color <| El.rgb255 255 255 255
-                , Border.rounded 3
-                , El.centerX
-                ]
-                { onPress = Just DevLogin
-                , label =
-                    El.el
-                        [ El.paddingXY 16 7
-                        , Font.light
-                        ]
-                        (El.text "DevLogin")
-                }
-           ]
+  case Env.mode of
+    Env.Production ->
+      elements
+    Env.Development ->
+      elements
+          ++ [ Input.button
+                  [ Background.color Style.offLavender
+                  , El.mouseOver [ Background.color Style.offLavender ]
+                  , Font.size 15
+                  , Font.color <| El.rgb255 255 255 255
+                  , Border.rounded 3
+                  , El.centerX
+                  ]
+                  { onPress = Just DevLogin
+                  , label =
+                      El.el
+                          [ El.paddingXY 16 7
+                          , Font.light
+                          ]
+                          (El.text "DevLogin")
+                  }
+             ]
 
 
 withActivityText : FrontendModel -> List (El.Element FrontendMsg) -> List (El.Element FrontendMsg)
